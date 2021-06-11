@@ -4,9 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 using Microsoft.Extensions.Configuration;
-//using MyCookingMaster.BL.Models;
 using System.IO;
 
 namespace CustomerFeedback.Data
@@ -20,13 +18,15 @@ namespace CustomerFeedback.Data
 
         public virtual DbSet<Feedback> Feedback { get; set; }
 
+        public const string appJsonSettings = "/../CustomerFeedback.App/appsettings.json";
+
         public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
         {
             public ApplicationDbContext CreateDbContext(string[] args)
             {
                 IConfigurationRoot configuration = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile(@Directory.GetCurrentDirectory() + "/../CustomerFeedback.App/appsettings.json")
+                    .AddJsonFile(@Directory.GetCurrentDirectory() + appJsonSettings)
                     .Build();
                 var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
                 //var connectionString = configuration.GetConnectionString("DatabaseConnection");
@@ -44,6 +44,10 @@ namespace CustomerFeedback.Data
         //{
         //    modelBuilder.Entity<Feedback>(entity =>
         //    {
+
+        //        entity.HasKey(e => e.Id)
+        //            .HasName("PK__Feedback__970EC36669B0E780");
+
         //        entity.Property(e => e.FirstName)
         //            .IsRequired()
         //            .HasMaxLength(50);
@@ -56,18 +60,6 @@ namespace CustomerFeedback.Data
         //            .IsRequired()
         //            .HasMaxLength(5000);
         //    });
-
-        //    //modelBuilder.Entity<Product>(entity =>
-        //    //{
-        //    //    entity.Property(e => e.Description)
-        //    //        .IsRequired()
-        //    //        .HasMaxLength(50);
-
-        //    //    entity.Property(e => e.Name)
-        //    //        .IsRequired()
-        //    //        .HasMaxLength(50);
-
-        //    //    entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
         //    //});
 
         //    OnModelCreatingPartial(modelBuilder);

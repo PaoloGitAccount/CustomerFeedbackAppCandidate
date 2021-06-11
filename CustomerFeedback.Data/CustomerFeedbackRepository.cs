@@ -19,14 +19,6 @@ namespace CustomerFeedback.Data
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        //public IUnitOfWork UnitOfWork
-        //{
-        //    get
-        //    {
-        //        return _context;
-        //    }
-        //}
-
         public CustomerFeedbackRepository()
         {
             //options =>options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection"))

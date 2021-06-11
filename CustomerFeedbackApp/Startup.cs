@@ -29,17 +29,14 @@ namespace CustomerFeedbackApp
         {
             services.AddTransient<ICustomerFeedbackService, CustomerFeedbackService>();
             services.AddTransient<ICustomerFeedbackRepository, CustomerFeedbackRepository>();
-;      //     services.AddTransient<ICustomerFeedbackRepository, CustomerFeedbackRepository>(options =>
-       // options.UseSqlServer(Configuration.GetConnectionString("FeedbackDbContext")));
 
         //    services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
-
 
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("AzureDbConnection")));
 
             //services.AddDbContext<FeedbackDbContext>(options =>
-            // options.UseSqlServer(Configuration.GetConnectionString("FeedbackDbContext")));
+            // options.UseSqlServer(Configuration.GetConnectionString("DatabaselocalConnection")));
 
             services.AddControllersWithViews();
         }
