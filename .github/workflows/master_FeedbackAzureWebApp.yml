@@ -53,5 +53,5 @@ jobs:
       with:
         app-name: 'FeedbackAzureWebApp'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_8cc70e528aa34aabb505d4f7e50868f6 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_a6136f72ec3c4e2088d52a8e930163e7 }}
         package: .
