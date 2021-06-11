@@ -7,8 +7,8 @@ namespace CustomerFeedback.Data
     public class CustomerFeedbackRepository : ICustomerFeedbackRepository
     {
         private readonly ICustomerFeedbackRepository _customerFeedbackRepository;
-        public const string databaseConnection = "Server=(localdb)//mssqllocaldb;Database=FeedbackDb;Trusted_Connection=True;MultipleActiveResultSets=true";
-        public const string azureDbConnection = "Server=tcp:localptazure.database.windows.net,1433;Initial Catalog=FeedbackDb;Persist Security Info=False;User ID=adminsql;Password=sqlpsw_2021;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        private const string databaseConnection = "Server=(localdb)//mssqllocaldb;Database=FeedbackDb;Trusted_Connection=True;MultipleActiveResultSets=true";
+        private const string azureDbConnection = "Server=tcp:localptazure.database.windows.net,1433;Initial Catalog=FeedbackDb;Persist Security Info=False;User ID=adminsql;Password=sqlpsw_2021;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         private ApplicationDbContext _context { get; }
 
@@ -21,15 +21,12 @@ namespace CustomerFeedback.Data
 
         public CustomerFeedbackRepository()
         {
-            //options =>options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection"))
         }
 
         public object Save(string firstname, string lastname, string comment)
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
             optionsBuilder.UseSqlServer(azureDbConnection);
-                //"Server=(localdb)//mssqllocaldb;Database=FeedbackDb;Trusted_Connection=True;MultipleActiveResultSets=true");
-                //Configuration.GetConnectionString("DatabaseConnection"));
 
             using (ApplicationDbContext context = new ApplicationDbContext(optionsBuilder.Options))
             {

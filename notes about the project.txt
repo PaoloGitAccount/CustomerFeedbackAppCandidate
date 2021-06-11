@@ -1,0 +1,66 @@
+Notes about project for system with Feedback Utility, Azure Sql Server database, deployed to Azure Cloud from gitHub.
+
+Link to the deployment on Azure:
+https://feedbackazurewebapp.azurewebsites.net/
+
+Passed all tests,screenshot attached with details, implementing the business logic to save the feedback data to a persistence layer implementation, using Azure SQL Database.
+
+Deployed the application to Azure using gitHub.
+
+Added a new console project for the new functionality for a sentiment analysis using Azure Text Analytics.
+Created Cognitive Service API keys and endpoint in Azure portal.
+
+Prepared an architecture following SOLID best practices, Entity Framework, 
+
+with a Database-first approach, created the structure of the database first (details of script below).
+
+It's possible to switch easily between two versions, a local SQL Database and the Azure SQL Database (default).
+
+
+Used as .NET framework, .NET Core 3.1 , Dependency Injection, using a DbContext, ApplicationDbContext for the Feedback class.
+
+Installed various NuGet packages:
+⦁	Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 3.1.0
+⦁	Install-Package Microsoft.EntityFrameworkCore.Tools -Version 3.1.0
+⦁	Install-Package Microsoft.EntityFrameworkCore.SqlServer -Version 3.1.0
+
+connectionstring to the database in the appsettings.json.
+
+Link to the project on Github:
+https://github.com/PaoloGitAccount/CustomerFeedbackAppCandidate
+
+------------------------------------------
+--script used to create the database and the tables:
+
+USE master
+IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'FeedbackDb')
+  BEGIN
+    CREATE DATABASE [FeedbackDb]
+    END
+    GO
+       USE [FeedbackDb]
+    GO
+GO
+
+USE FeedbackDb
+Create Table Feedback(
+Id Int Identity(1,1) Not null Primary Key,
+FirstName Varchar(50) Not null,
+Lastname Varchar(50) Not null,
+Comment Varchar(2000) Not null,
+CreatedDate DateTime Default(GetDate()) Not Null)
+GO
+CREATE NONCLUSTERED INDEX [IX_Feedback_Id]
+    ON [dbo].[Feedback]([Id] ASC);
+GO
+ALTER TABLE [dbo].[Feedback]
+    ADD CONSTRAINT [PK_Feedback] PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+USE FeedbackDb
+Insert Into Feedback(FirstName, Lastname, Comment, CreatedDate) 
+Values ('John', 'LastName1', 'comment1', GetDate())
+--Values ('Peter', 'LastName2','comment2', GetDate())
+GO
+
+--SELECT * FROM Feedback
