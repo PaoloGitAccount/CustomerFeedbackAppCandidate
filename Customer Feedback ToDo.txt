@@ -1,0 +1,23 @@
+
+Problem background:
+
+We have created a simple .Net Core application that currently consists of one page that is used to capture firstname, lastname and comment.
+ 
+The application is partially implemented but there is currently no data/persistence layer implemented. 
+There are currently 4 unit tests, 3 of which are passing and 1 is failing (Repository test).
+
+Prerequisites:
+
+1)	Download and unzip the zip file called “CustomerFeedbackAppCandidate” and unzip it to a folder located in “C:\ CustomerFeedbackApp”
+2)	Have a copy of Visual Studio 2019 available to use
+3)	Have an Azure subscription available to use to for the data persistence implementation.
+
+Solution and what you need to do:
+
+1)	You need to get the failing repository test passing by implementing the business logic to save the feedback data to a persistence layer implementation of your choice. (You may choose, Azure SQL Database, Azure Cosmos DB etc.)
+2)	You will need to deploy your application to Azure. (how you do this is your call).
+3)	As an extra you may wish to create new functionality that shows the overall sentiment of all feedback, you may choose to extend the existing solution or create a new solution. (How you do this is up to you but you may look at something like sentiment analysis using Azure Text Analytics).
+
+Timescale:
+
+You will have approx 3 days to implement your solution, after which you will have to send your zipped solution to mclarke@lqgroup.org.uk. All solutions will be assessed and you may be asked if you wish to attend a final face-to-face (Teams) interview.
